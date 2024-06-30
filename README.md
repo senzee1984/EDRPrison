@@ -1,6 +1,8 @@
 # EDRPrison
 Leverage a legitimate driver to silence EDR
 
+Please refer to the article for more technical details: 
+
 ## Components
 
 
