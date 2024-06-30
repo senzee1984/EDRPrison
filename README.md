@@ -22,6 +22,12 @@ Elevated privileges are required to run EDRPrison successfully. EDRPrison compri
 
 
 # Benefits And Improvements
+EDRPrison offers several enhancements and improvements over its predecessors, making it a more robust and stealthy tool for network-based EDR evasion:
+
+1. Instead of adding static WFP filters to EDR process executables, EDRPrison dynamically adds runtime WFP filters based on the packets' source process. 
+2. Avoids obtaining a handle to EDR processes or EDR executables, reducing the risk of detection and interference with the EDR systems.
+3. By loading a legitimate WFP callout driver, EDRPrison extends its capabilities while maintaining a benign profile. 
+
 
 
 # Test Example
