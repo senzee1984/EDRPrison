@@ -1,12 +1,14 @@
 # EDRPrison
-EDRPrison leverages a legitimate WFP callout driver [WinDivert](https://reqrypt.org/windivert.html) to silence EDR. Inspired by [Shutter](https://github.com/dsnezhkov/shutter), [FireBlock](https://www.mdsec.co.uk/2023/09/nighthawk-0-2-6-three-wise-monkeys/), and [EDRSilencer](https://github.com/netero1010/EDRSilencer), I have researched evasion based on network intervention. Different from them, EDRPrison installs and loads an external legitimate WFP callout driver rather than relying on the built-in WFP. Additionally, EDRPrison blocks EDR processes' outbound traffic by dynamically adding run-time filters without directly interacting with them and their executables.
+EDRPrison leverages a legitimate WFP callout driver, [WinDivert](https://reqrypt.org/windivert.html), to effectively silence EDR systems. Drawing inspiration from tools like [Shutter](https://github.com/dsnezhkov/shutter), [FireBlock](https://www.mdsec.co.uk/2023/09/nighthawk-0-2-6-three-wise-monkeys/), and [EDRSilencer](https://github.com/netero1010/EDRSilencer), this project focuses on network-based evasion techniques. Unlike its predecessors, EDRPrison installs and loads an external legitimate WFP callout driver instead of relying solely on the built-in WFP. Additionally, it blocks outbound traffic from EDR processes by dynamically adding runtime filters without directly interacting with the EDR processes or their executables.
 
-In summary, EDRPrison has the following features and capabilities
-- Utilize a legitimate WFP callout driver to extend capabilities while being benign
-- Search for running EDR processes based on defined process names
-- Identify packets that originated from EDR processes
-- Dynamically add WFP filters based on packets' source process
-- Avoid interaction with EDR processes and EDR executables
+
+In summary, EDRPrison has the following key features and capabilities
+- Legitimate WFP Callout Driver: Utilizes a legitimate WFP callout driver to enhance capabilities while maintaining a benign profile.
+- EDR Process Detection: Searches for running EDR processes based on predefined process names.
+- Packet Identification: Identifies packets originating from EDR processes.
+- Dynamic Filter Addition: Dynamically adds WFP filters based on the source process of the packets.
+- Non-Intrusive Approach: Avoids direct interaction with EDR processes and their executables, ensuring stealth and reducing the risk of detection.
+
 
 
 Please refer to the article for more technical details: 
