@@ -30,36 +30,37 @@ Elevated privileges are required to run EDRPrison successfully. EDRPrison compri
 
 
 # Detections and Mitigations
+The following approaches can be used to detect or mitigate the use of EDRPrison. However, depending on the environment, some of these detections could result in false positives (FP).
 
 ### Driver Load Event
-- If the WinDivert driver is not installed on the system, EDRPrison will install the callout driver upon first execution. Both the OS and the telemetry will log this event.
+- If the WinDivert driver is not already installed on the system, EDRPrison will install the callout driver upon first execution. Both the OS and telemetry systems will log this event.
 
 ### Existence of WinDivert Files
-- EDRPrison and other WinDivert-dependent programs require WinDivert64.sys and WinDivert.dll to be on the disk.
+- EDRPrison and other programs dependent on WinDivert require the presence of WinDivert64.sys and WinDivert.dll on the disk. Monitoring for these files can help in detecting such programs.
 
 ### WinDivert Usage Detection Tools
-- Some tools, such as WinDivertTool, can detect processes currently using WFP.
+- Tools like [WinDivertTool](https://github.com/basil00/WinDivertTool) can detect processes that are currently utilizing the Windows Filtering Platform (WFP).
 
 ### Packet Drop/Block Actions Against EDR Processes
-- Elastic has a detection rule that can be used to detect packet drop or block actions against security software processes.
+- Elastic has a detection [rule](https://www.elastic.co/guide/en/security/current/potential-evasion-via-windows-filtering-platform.html) that can identify packet drop or block actions against security software processes, which can indicate the presence of EDRPrison.
 
 ### Review Registered WFP Providers, Filters, and Callouts
-- Tool WFPExplorer helps administrators review active WFP sessions, registered callouts, and filters.
+- Tool [WFPExplorer](https://github.com/jdu2600/WFPExplorer) assists administrators in reviewing active WFP sessions, registered callouts, and filters. 
 
 ### Adminless
-- A future feature that could add additional protections for driver installment.
+- A potential future feature could add additional protections for driver installation, further enhancing the security against unauthorized use of drivers like WinDivert.
 
-# Further Evasion
-From a red teamer's perspective, we can subvert some of the above detections depending on the environment's security configurations.
+# Red Team Strategies to Subvert Detections
+From a red team perspective, several strategies can be employed to subvert the aforementioned detections, depending on the environment's security configurations.
 
 ### Seek An Alternative To WinDivert
-- If WinDivert is considered malicious in the environment, we can seek signed, open-source alternatives, have fewer records for malicious purposes, and allow packet interception, reinjection, and other manipulation.
+- If WinDivert is considered malicious in the environment, alternative signed, open-source drivers can be used. These alternatives should have fewer records of malicious use and still support packet interception, reinjection, and other manipulation techniques.
 
 ### Reuse An Installed Or Built-in WFP Callout Driver
-- If all external drivers are considered unauthorized unless approved, it is challenging but possible to reverse engineer an installed or built-in WFP callout driver and reuse its callout functions. Many security software solutions have their own WFP callout drivers.
+- In environments where external drivers are unauthorized unless approved, it is challenging but feasible to reverse-engineer an installed or built-in WFP callout driver. By reusing its callout functions, red teamers can leverage existing drivers. Many security software solutions include their own WFP callout drivers that can be repurposed.
 
 ### Change Action To Intercepted Packets
-- Redirect or proxy the packets instead of blocking or dropping them.
+- Instead of blocking or dropping intercepted packets, red teamers can redirect or proxy them. This method can avoid detection rules focused on packet drop or block actions, while still achieving the desired interference with EDR processes.
 
  
 
