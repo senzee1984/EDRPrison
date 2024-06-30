@@ -14,11 +14,11 @@ Please refer to the article for more technical details:
 ### Components
 To successfully run EDRPrison, elevated privilege is required. EDRPrison includes the following 3 components:
 
-EDRPrison.exe: The main executable program. Can be executed in memory. The first execution installs WinDivert driver.
+**EDRPrison.exe**: The main executable program. Can be executed in memory. The first execution installs WinDivert driver.
 
-WinDivert64.sys: The signed WFP callout driver, should be on disk.
+**WinDivert64.sys**: The signed WFP callout driver, should be on disk.
 
-WinDivert.dll: A component of WinDivert project, should be on disk.
+**WinDivert.dll**: A component of WinDivert project, should be on disk.
 
 
 # Benefits And Improvements
@@ -50,10 +50,10 @@ WinDivert.dll: A component of WinDivert project, should be on disk.
 - A future feature that could add additional protections for driver installment.
 
 # Further Evasion
-From a red teamer's perspective, depending on the environment's security configurations, we can subvert some of the above detections.
+From a red teamer's perspective, we can subvert some of the above detections depending on the environment's security configurations.
 
 ### Seek An Alternative To WinDivert
-- If WinDivert is considered malicious in the environment, we can seek alternatives that are signed, open-source, have fewer records for malicious purposes, and allow packet interception, reinjection, and other manipulation.
+- If WinDivert is considered malicious in the environment, we can seek signed, open-source alternatives, have fewer records for malicious purposes, and allow packet interception, reinjection, and other manipulation.
 
 ### Reuse An Installed Or Built-in WFP Callout Driver
 - If all external drivers are considered unauthorized unless approved, it is challenging but possible to reverse engineer an installed or built-in WFP callout driver and reuse its callout functions. Many security software solutions have their own WFP callout drivers.
