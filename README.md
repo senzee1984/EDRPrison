@@ -1,15 +1,24 @@
 # EDRPrison
-Leverage a legitimate driver to silence EDR
+EDRPrison leverages a legitimate WFP callout driver to silence EDR. Inspired by [Shutter](https://github.com/dsnezhkov/shutter), [FireBlock](https://www.mdsec.co.uk/2023/09/nighthawk-0-2-6-three-wise-monkeys/), and [EDRSilencer](https://github.com/netero1010/EDRSilencer), I have researched evasion based on network intervention. Different from them, EDRPrison installs and loads an external legitimate WFP callout driver rather than relying on the built-in WFP. Additionally, EDRPrison blocks EDR processes' outbound traffic by dynamically adding run-time filters without directly interacting with them and their executables.
+
+In summary, EDRPrison has the following features and capabilities
+- Utilize a legitimate WFP callout driver to extend capabilities while being benign
+- Search for running EDR processes based on defined process names
+- Identify packets that originated from EDR processes
+- Dynamically add WFP filters based on packets' source process
+- Avoid interaction with EDR processes and EDR executables
+
 
 Please refer to the article for more technical details: 
 
 ### Components
+To successfully run EDRPrison, elevated privilege is required. EDRPrison includes the following 3 components:
 
-EDRPrison.exe: The main executable program. 
+EDRPrison.exe: The main executable program. Can be executed in memory. The first execution installs WinDivert driver.
 
-WinDivert64.sys: The signed WFP callout driver.
+WinDivert64.sys: The signed WFP callout driver, should be on disk.
 
-WinDivert.dll: A component of WinDivert project.
+WinDivert.dll: A component of WinDivert project, should be on disk.
 
 
 # Benefits And Improvements
