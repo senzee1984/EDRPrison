@@ -3,7 +3,13 @@ Leverage a legitimate driver to silence EDR
 
 Please refer to the article for more technical details: 
 
-## Components
+### Components
+
+EDRPrison.exe: The main executable program. 
+
+WinDivert64.sys: The signed WFP callout driver.
+
+WinDivert.dll: A component of WinDivert project.
 
 
 # Benefits And Improvements
@@ -16,10 +22,37 @@ Please refer to the article for more technical details:
 
 # Detections and Mitigations
 
+### Driver Load Event
+- If the WinDivert driver is not installed on the system, EDRPrison will install the callout driver upon first execution. Both the OS and the telemetry will log this event.
 
+### Existence of WinDivert Files
+- EDRPrison and other WinDivert-dependent programs require WinDivert64.sys and WinDivert.dll to be on the disk.
 
+### WinDivert Usage Detection Tools
+- Some tools, such as WinDivertTool, can detect processes currently using WFP.
+
+### Packet Drop/Block Actions Against EDR Processes
+- Elastic has a detection rule that can be used to detect packet drop or block actions against security software processes.
+
+### Review Registered WFP Providers, Filters, and Callouts
+- Tool WFPExplorer helps administrators review active WFP sessions, registered callouts, and filters.
+
+### Adminless
+- A future feature that could add additional protections for driver installment.
 
 # Further Evasion
+From a red teamer's perspective, depending on the environment's security configurations, we can subvert some of the above detections.
+
+### Seek An Alternative To WinDivert
+- If WinDivert is considered malicious in the environment, we can seek alternatives that are signed, open-source, have fewer records for malicious purposes, and allow packet interception, reinjection, and other manipulation.
+
+### Reuse An Installed Or Built-in WFP Callout Driver
+- If all external drivers are considered unauthorized unless approved, it is challenging but possible to reverse engineer an installed or built-in WFP callout driver and reuse its callout functions. Many security software solutions have their own WFP callout drivers.
+
+### Change Action To Intercepted Packets
+- Redirect or proxy the packets instead of blocking or dropping them.
+
+ 
 
 
 # Credit
