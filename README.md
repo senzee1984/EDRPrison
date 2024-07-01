@@ -29,13 +29,24 @@ EDRPrison offers several enhancements and improvements over its predecessors, ma
 3. By loading a legitimate WFP callout driver, EDRPrison extends its capabilities while maintaining a benign profile. 
 
 # Known Issues
-
+1. Currently, EDRPrison is written in C#, requiring multiple files to be present on disk, which compromises stealth. I plan to reimplement it in C++ to allow the main program to be executed entirely in memory, enhancing its stealth capabilities.
+2. There is a delay between the program's execution and the initial blocking of some EDR processes' network connections. This delay could permit telemetry to be sent to cloud servers within the first few seconds. I am working on resolving this issue to ensure immediate interception and blocking.
 
 
 # Test Example
+Due to the resources available to me, I have tested EDRPrison against Elastic Endpoint and Microsoft Defender for Endpoint (MDE) on my physical server so far.
 
+Relevant processes for Elastic Endpoint and MDE are hardcoded in the source code. During the tests, neither the main program nor WinDivert was detected by the security systems.
 
+I tested a few common malware samples, such as Mimikatz. These samples can still be detected because, even without internet connectivity, EDR systems retain basic detection capabilities such as hash-based signatures. After executing the malware, the number of packets increased, indicating that they contained alert data.
 
+![image](/screenshot/edrprison.jpg)
+
+While some detections occur locally, they do not appear on the EDR panel. Without internet connectivity, EDR systems are unable to leverage advanced capabilities like machine learning and cloud computing to prevent more sophisticated malware attacks.
+
+![image](/screenshot/es.png)
+
+![image](/screenshot/mde.png)
 
 # Detections and Mitigations
 The following approaches can be used to detect or mitigate the use of EDRPrison. However, depending on the environment, some of these detections could result in false positives (FP).
@@ -52,6 +63,8 @@ EDRPrison and other programs dependent on WinDivert require the presence of WinD
 
 Tools like [WinDivertTool](https://github.com/basil00/WinDivertTool) can detect processes that are currently utilizing the Windows Filtering Platform (WFP).
 
+![image](/screenshot/windiverttool.jpg)
+
 ### Packet Drop/Block Actions Against EDR Processes
 
 Elastic has a detection [rule](https://www.elastic.co/guide/en/security/current/potential-evasion-via-windows-filtering-platform.html) that can identify packet drop or block actions against security software processes, which can indicate the presence of EDRPrison.
@@ -59,6 +72,14 @@ Elastic has a detection [rule](https://www.elastic.co/guide/en/security/current/
 ### Review Registered WFP Providers, Filters, and Callouts
 
 Tool [WFPExplorer](https://github.com/jdu2600/WFPExplorer) assists administrators in reviewing active WFP sessions, registered callouts, and filters. 
+
+![image](/screenshot/session.png)
+
+![image](/screenshot/callout.png)
+
+![image](/screenshot/provider.png)
+
+![image](/screenshot/filter.png)
 
 ### Adminless
 
