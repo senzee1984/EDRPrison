@@ -16,9 +16,9 @@ Please refer to the article for more technical details:
 ### Components
 Elevated privileges are required to run EDRPrison successfully. EDRPrison comprises the following three components:
 
-- EDRPrison.exe: This is the main executable program. It can be executed in memory, and its first execution installs the WinDivert driver.
-- WinDivert64.sys: This is the signed WFP callout driver that needs to be present on disk.
-- WinDivert.dll: A component of the WinDivert project, this DLL must also be on disk.
+- EDRPrison: They are the main program and its dependencies. Its first execution installs the WinDivert driver.
+- WinDivert64.sys: This is the signed WFP callout driver.
+- WinDivert.dll: A component of the WinDivert project.
 
 
 # Benefits And Improvements
@@ -27,6 +27,8 @@ EDRPrison offers several enhancements and improvements over its predecessors, ma
 1. Instead of adding static WFP filters to EDR process executables, EDRPrison dynamically adds runtime WFP filters based on the packets' source process. 
 2. Avoids obtaining a handle to EDR processes or EDR executables, reducing the risk of detection and interference with the EDR systems.
 3. By loading a legitimate WFP callout driver, EDRPrison extends its capabilities while maintaining a benign profile. 
+
+# Known Issues
 
 
 
