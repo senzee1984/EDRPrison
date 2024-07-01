@@ -48,6 +48,24 @@ While some detections occur locally, they do not appear on the EDR panel. Withou
 
 ![image](/screenshot/mde.png)
 
+### Test Against More EDR
+Modify the following code snippet to hardcode more EDR processes.
+
+```c#
+        static void initData()
+        {
+            processDictionary.TryAdd("MsMpEng.exe", 1);
+            processDictionary.TryAdd("MsSense.exe", 1);
+            processDictionary.TryAdd("SenseIR.exe", 1);
+            processDictionary.TryAdd("SenseNdr.exe", 1);
+            processDictionary.TryAdd("SenseCncProxy.exe", 1);
+            processDictionary.TryAdd("SenseSampleUploader.exe", 1);
+            processDictionary.TryAdd("elastic-endpoint.exe", 1);
+            processDictionary.TryAdd("elastic-agent.exe", 1);
+        }
+```
+
+
 # Detections and Mitigations
 The following approaches can be used to detect or mitigate the use of EDRPrison. However, depending on the environment, some of these detections could result in false positives (FP).
 
