@@ -1,4 +1,6 @@
 # EDRPrison
+Co-Author: @oops4git(https://github.com/oops4git)
+
 EDRPrison leverages a legitimate WFP callout driver, [WinDivert](https://reqrypt.org/windivert.html), to effectively silence EDR systems. Drawing inspiration from tools like [Shutter](https://github.com/dsnezhkov/shutter), [FireBlock](https://www.mdsec.co.uk/2023/09/nighthawk-0-2-6-three-wise-monkeys/), and [EDRSilencer](https://github.com/netero1010/EDRSilencer), this project focuses on network-based evasion techniques. Unlike its predecessors, EDRPrison installs and loads an external legitimate WFP callout driver instead of relying solely on the built-in WFP. Additionally, it blocks outbound traffic from EDR processes by dynamically adding runtime filters without directly interacting with the EDR processes or their executables.
 
 
