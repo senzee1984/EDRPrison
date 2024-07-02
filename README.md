@@ -13,7 +13,7 @@ In summary, EDRPrison has the following key features and capabilities
 
 
 
-Please refer to the article for more technical details: 
+Please refer to the article for more technical details: https://www.3nailsinfosec.com/post/edrprison-borrow-a-legitimate-driver-to-mute-edr-agent
 
 ### Components
 Elevated privileges are required to run EDRPrison successfully. EDRPrison comprises the following three components:
