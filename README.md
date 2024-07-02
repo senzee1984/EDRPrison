@@ -71,7 +71,7 @@ The following approaches can be used to detect or mitigate the use of EDRPrison.
 
 ### Driver Load Event
 
-If the WinDivert driver is not already installed on the system, EDRPrison will install the callout driver upon first execution. Both the OS and telemetry systems will log this event.
+If the WinDivert driver is not already installed on the system, EDRPrison will install the callout driver upon first execution. Both the OS and telemetry data will log this event.
 
 ### Existence of WinDivert Files
 
