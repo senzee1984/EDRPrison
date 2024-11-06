@@ -64,7 +64,14 @@ namespace App
             {
                 strAddr = result.IPV6Header->DstAddr.ToString();
             }
-            strPort = result.TcpHeader->DstPort.ToString();
+            if (result.TcpHeader != null)
+            {
+                strPort = result.TcpHeader->DstPort.ToString();
+            }
+            if (result.UdpHeader != null)
+            {
+                strPort = result.UdpHeader->DstPort.ToString();
+            }
             strAddr = strAddr + ":" + strPort;
             return strAddr;
         }
