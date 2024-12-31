@@ -91,7 +91,7 @@ Elastic has a detection [rule](https://www.elastic.co/guide/en/security/current/
 
 ### Review Registered WFP Providers, Filters, and Callouts
 
-Tool [WFPExplorer](https://github.com/jdu2600/WFPExplorer) assists administrators in reviewing active WFP sessions, registered callouts, and filters. 
+Tool [WFPExplorer](https://github.com/zodiacon/WFPExplorer) assists administrators in reviewing active WFP sessions, registered callouts, and filters. 
 
 ![image](/screenshot/session.png)
 
